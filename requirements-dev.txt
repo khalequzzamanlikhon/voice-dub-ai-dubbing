@@ -1,0 +1,10 @@
+# Minimal deps to run the fast unit test suite (tests/test_pipeline.py minus
+# the @pytest.mark.integration test) without installing the full ML stack
+# (torch, TTS, pyannote, transformers, ...) from requirements.txt.
+#
+# Usage:
+#   pip install -r requirements-dev.txt
+#   pytest
+pytest==8.3.3
+loguru==0.7.2
+python-dotenv==1.0.1

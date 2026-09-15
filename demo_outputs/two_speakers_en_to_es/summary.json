@@ -1,0 +1,38 @@
+{
+  "input": "two_speakers.mp4",
+  "output": "dubbed_es.mp4",
+  "source_lang": "en",
+  "target_lang": "es",
+  "diarize": false,
+  "whisper_model": "small",
+  "input_duration_s": 30.0,
+  "timings_s": {
+    "extract": 0.16,
+    "transcribe": 8.16,
+    "translate": 8.76,
+    "build_speaker_profiles": 0.02,
+    "synthesize": 117.39,
+    "align": 0.85,
+    "reassemble": 0.02,
+    "remux": 0.67,
+    "total": 136.21
+  },
+  "realtime_factor": 4.54,
+  "speakers": [
+    "SPEAKER_00"
+  ],
+  "segments": [
+    {
+      "id": "seg_0000",
+      "speaker": "SPEAKER_00",
+      "start": 0.0,
+      "end": 30.02,
+      "text": "Hello. Hello. Oh, hello. didn't know you were there. Neither did I. Okay, I thought, you know, I heard it deep. This is Diane in New Jersey. And I'm Sheila in Texas, originally from Chicago. Oh, I'm originally from Chicago also. I'm in New Jersey now, though. Well, there is not much difference. At least, you know, they all call me a Yankee down here, so what kind of thing? Oh, I don't hear that in New Jersey now.",
+      "translated_text": "Hola. Hola. Oh, hola. No sabía que estuvieras allí. Yo tampoco. Vale, pensé, ya sabes, lo oí profundamente. Esta es Diane en Nueva Jersey. Y soy Sheila en Texas, originalmente de Chicago. Oh, yo soy originalmente de Chicago también. Estoy en Nueva Jersey ahora, sin embargo, no hay mucha diferencia. Al menos, ya sabes, todos me llaman un yankee aquí abajo, así que qué clase de cosa? Oh, no escucho eso en Nueva Jersey ahora.",
+      "synth_duration": 41.04,
+      "target_duration": 30.02,
+      "aligned": true,
+      "overlap": false
+    }
+  ]
+}

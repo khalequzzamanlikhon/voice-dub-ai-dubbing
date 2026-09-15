@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.env
+*.wav
+*.mp3
+*.mp4
+!examples/**/*.wav
+!examples/**/*.mp4
+!docs/demo/**/*.mp4
+.cache/
+models/
+outputs/
+.venv/
+*.egg-info/
+.DS_Store
+.ipynb_checkpoints/

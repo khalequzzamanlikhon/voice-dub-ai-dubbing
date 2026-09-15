@@ -1,0 +1,38 @@
+{
+  "input": "two_speakers.mp4",
+  "output": "dubbed_de.mp4",
+  "source_lang": "en",
+  "target_lang": "de",
+  "diarize": false,
+  "whisper_model": "small",
+  "input_duration_s": 30.0,
+  "timings_s": {
+    "extract": 0.13,
+    "transcribe": 8.1,
+    "translate": 9.3,
+    "build_speaker_profiles": 0.02,
+    "synthesize": 126.67,
+    "align": 0.62,
+    "reassemble": 0.01,
+    "remux": 0.75,
+    "total": 145.78
+  },
+  "realtime_factor": 4.86,
+  "speakers": [
+    "SPEAKER_00"
+  ],
+  "segments": [
+    {
+      "id": "seg_0000",
+      "speaker": "SPEAKER_00",
+      "start": 0.0,
+      "end": 30.02,
+      "text": "Hello. Hello. Oh, hello. didn't know you were there. Neither did I. Okay, I thought, you know, I heard it deep. This is Diane in New Jersey. And I'm Sheila in Texas, originally from Chicago. Oh, I'm originally from Chicago also. I'm in New Jersey now, though. Well, there is not much difference. At least, you know, they all call me a Yankee down here, so what kind of thing? Oh, I don't hear that in New Jersey now.",
+      "translated_text": "Hallo. Hallo. Oh, Hallo. Ich wusste nicht, dass du da warst. Ich wusste es auch nicht. Okay, ich dachte, du weißt schon, ich habe es tief gehört. Das ist Diane aus New Jersey. Und ich bin Sheila aus Texas, ursprünglich aus Chicago. Oh, ich bin ursprünglich auch aus Chicago. Ich bin jetzt in New Jersey, aber es gibt nicht viel Unterschied. Zumindest, weißt du, sie nennen mich alle hier unten einen Yankee, also was für eine Sache? Oh, ich höre das jetzt nicht in New Jersey.",
+      "synth_duration": 49.16,
+      "target_duration": 30.02,
+      "aligned": true,
+      "overlap": false
+    }
+  ]
+}

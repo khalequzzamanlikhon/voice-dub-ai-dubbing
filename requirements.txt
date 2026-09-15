@@ -1,0 +1,42 @@
+# --- Core AV / glue ---
+ffmpeg-python==0.2.0
+pydub==0.25.1
+numpy==1.26.4
+scipy==1.13.1
+soundfile==0.12.1
+librosa==0.10.2.post1
+
+# --- STT ---
+faster-whisper==1.0.3
+ctranslate2==4.3.1
+
+# --- Diarization ---
+pyannote.audio==3.1.1
+torch>=2.1.0
+torchaudio>=2.1.0
+
+# --- Translation ---
+transformers==4.44.2
+sentencepiece==0.2.0
+accelerate==0.33.0
+openai==1.43.0          # optional GPT-4o-mini translation backend
+
+# --- Voice cloning / TTS ---
+TTS==0.22.0              # Coqui TTS, ships XTTS-v2
+# f5-tts is an optional alternative backend; install separately if selected:
+# git+https://github.com/SWivid/F5-TTS.git
+
+# --- Time-alignment ---
+pyrubberband==0.3.0      # requires system `rubberband-cli`
+
+# --- Speaker-similarity eval metric ---
+resemblyzer==0.1.4
+
+# --- Interface ---
+gradio==4.44.0
+
+# --- Utilities ---
+python-dotenv==1.0.1
+tqdm==4.66.5
+pydantic==2.8.2
+loguru==0.7.2
