@@ -9,14 +9,14 @@ multi-speaker handling.
 
 ```
 Input (video/audio)
-  → [1] Audio extraction        ffmpeg
-  → [2] Speaker diarization     pyannote.audio 3.1
-  → [3] Transcription           faster-whisper (word timestamps)
-  → [4] Translation             NLLB-200 (local) / GPT-4o-mini (API)
-  → [5] Voice cloning + TTS     XTTS-v2, per-speaker reference clips
-  → [6] Time alignment          pyrubberband / ffmpeg atempo, re-phrase fallback
-  → [7] Reassembly              pydub / ffmpeg
-  → [8] Re-mux with video       ffmpeg -map
+  → [1] Audio extraction ffmpeg
+  → [2] Speaker diarization pyannote.audio 3.1
+  → [3] Transcription faster-whisper (word timestamps)
+  → [4] Translation NLLB-200 (local) / GPT-4o-mini (API)
+  → [5] Voice cloning + TTS XTTS-v2, per-speaker reference clips
+  → [6] Time alignment pyrubberband / ffmpeg atempo, re-phrase fallback
+  → [7] Reassembly pydub / ffmpeg
+  → [8] Re-mux with video ffmpeg -map
 Output (dubbed audio/video)
 ```
 
@@ -38,11 +38,11 @@ conversation, wrapped as a waveform MP4.
 | Stage | What ran | Result |
 |---|---|---|
 | Tests | `pytest -v` | **9 passed**, 1 integration test deselected |
-| Dub en → es | `DubbingPipeline`, 30.0 s input | ✅ `dubbed_es.mp4`, total **136.2 s** (realtime factor **4.54×**) |
-| Dub en → de | same | ✅ `dubbed_de.mp4`, total **145.8 s** (realtime factor **4.86×**) |
+| Dub en → es | `DubbingPipeline`, 30.0 s input | yes `dubbed_es.mp4`, total **136.2 s** (realtime factor **4.54×**) |
+| Dub en → de | same | yes `dubbed_de.mp4`, total **145.8 s** (realtime factor **4.86×**) |
 
-🎬 **Clips:** [original (en)](docs/demo/original_en.mp4) · [dubbed (es)](docs/demo/dubbed_es.mp4) · [dubbed (de)](docs/demo/dubbed_de.mp4)
-📝 **Transcripts:** [en → es](docs/demo/transcript_en_to_es.md) · [en → de](docs/demo/transcript_en_to_de.md)
+ **Clips:** [original (en)](docs/demo/original_en.mp4) · [dubbed (es)](docs/demo/dubbed_es.mp4) · [dubbed (de)](docs/demo/dubbed_de.mp4)
+ **Transcripts:** [en → es](docs/demo/transcript_en_to_es.md) · [en → de](docs/demo/transcript_en_to_de.md)
 
 ### Stage timings (seconds)
 
@@ -69,11 +69,11 @@ Voice synthesis is 86–87 % of runtime.
 
 | Criterion | Target | This run | Status |
 |---|---|---|---|
-| Processing time | ≤ 3× realtime | 4.54× (es), 4.86× (de) | ❌ not met, synthesis-bound |
-| Time alignment | ±300 ms per segment | residual drift 766 ms (es), 6,854 ms (de) | ❌ not met on this clip |
-| Multi-speaker cloning | per-speaker voices | diarization off → both speakers → one `SPEAKER_00` voice | ⚠️ not exercised |
-| Transcription | intelligible | mostly correct; "I heard it deep" is a mishear (Whisper `small`) | ⚠️ acceptable |
-| Translation | idiomatic | fluent, literal phrasing ("lo oí profundamente") | ⚠️ acceptable |
+| Processing time | ≤ 3× realtime | 4.54× (es), 4.86× (de) | no not met, synthesis-bound |
+| Time alignment | ±300 ms per segment | residual drift 766 ms (es), 6,854 ms (de) | no not met on this clip |
+| Multi-speaker cloning | per-speaker voices | diarization off → both speakers → one `SPEAKER_00` voice | not exercised |
+| Transcription | intelligible | mostly correct; "I heard it deep" is a mishear (Whisper `small`) | acceptable |
+| Translation | idiomatic | fluent, literal phrasing ("lo oí profundamente") | acceptable |
 | Voice similarity | cosine similarity | not measured | — |
 | Demo UI | Gradio | not exercised in this run | — |
 
@@ -148,17 +148,17 @@ python demo_outputs/run_scripts/dub_demo.py input.mp4 --target-lang es --no-diar
 ```
 python -m src.pipeline INPUT [options]
 
-  -o, --output PATH             output file (default: outputs/dubbed.mp4)
-  --source-lang CODE            ISO 639-1, default: en
-  --target-lang CODE            ISO 639-1, default: es
-  --no-diarize                  force single-speaker mode (skip diarization)
-  --no-remux                    audio-only output, skip video remux
-  --preserve-background         duck-mix original track under dubbed speech
+  -o, --output PATH output file (default: outputs/dubbed.mp4)
+  --source-lang CODE ISO 639-1, default: en
+  --target-lang CODE ISO 639-1, default: es
+  --no-diarize force single-speaker mode (skip diarization)
+  --no-remux audio-only output, skip video remux
+  --preserve-background duck-mix original track under dubbed speech
   --translation-backend {nllb,gpt}
   --tts-backend {xtts,f5}
-  --whisper-model MODEL         faster-whisper model size (default: large-v3)
+  --whisper-model MODEL faster-whisper model size (default: large-v3)
   --device {cuda,cpu}
-  --work-dir PATH               intermediate-file scratch dir
+  --work-dir PATH intermediate-file scratch dir
 ```
 
 ## Key design decisions
