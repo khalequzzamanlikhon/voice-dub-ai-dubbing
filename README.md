@@ -1,6 +1,6 @@
 # voice-dub: AI Voice Cloning & Dubbing Pipeline
 
-[![CI](https://github.com/khalequzzamanlikhon/voice_dub/actions/workflows/ci.yml/badge.svg)](https://github.com/khalequzzamanlikhon/voice_dub/actions/workflows/ci.yml)
+[![CI](https://github.com/khalequzzamanlikhon/voice-dub-ai-dubbing/actions/workflows/ci.yml/badge.svg)](https://github.com/khalequzzamanlikhon/voice-dub-ai-dubbing/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Takes a video or audio file in one language and produces a dubbed version **in the
@@ -24,9 +24,9 @@ Output (dubbed audio/video)
 
 ## Verified run (2026-09-15)
 
-The full pipeline ran end-to-end on real models on a Linux GPU server, and every stage
-finished successfully. Outputs are in [`demo_outputs/`](demo_outputs/). The demo clips are
-in [`docs/demo/`](docs/demo/).
+I ran the full pipeline end-to-end on real models on a Linux GPU server, and every
+stage finished successfully. Outputs are in [`demo_outputs/`](demo_outputs/). The demo
+clips are in [`docs/demo/`](docs/demo/).
 
 **Environment:** Python 3.11 (conda), `torch 2.4.1+cu121`, `ctranslate2 4.5.0` (cuDNN 9),
 `TTS 0.22.0` (XTTS-v2), rubberband CLI from conda-forge, NVIDIA RTX A5000.
@@ -102,8 +102,8 @@ Fixes, in order of impact:
 ### 1. Environment
 
 ```bash
-git clone https://github.com/khalequzzamanlikhon/voice_dub.git
-cd voice_dub
+git clone https://github.com/khalequzzamanlikhon/voice-dub-ai-dubbing.git
+cd voice-dub-ai-dubbing
 python3.11 -m venv .venv && source .venv/bin/activate
 pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1
 pip install -r requirements.txt
@@ -159,43 +159,6 @@ python -m src.pipeline INPUT [options]
   --whisper-model MODEL         faster-whisper model size (default: large-v3)
   --device {cuda,cpu}
   --work-dir PATH               intermediate-file scratch dir
-```
-
-## What's in `demo_outputs/`
-
-```
-demo_outputs/
-├── inputs/two_speakers.mp4           30 s waveform video of the source audio
-├── two_speakers_en_to_es/
-│   ├── original.mp4, dubbed_es.mp4
-│   ├── summary.json                  timings, realtime factor, per-segment text + durations
-│   ├── transcript.md
-│   └── work/                         intermediate audio (extracted, synth, aligned)
-├── two_speakers_en_to_de/            same for German
-├── logs/                             setup, tests, inputs, pipeline run (incl. alignment warnings)
-├── run_scripts/                      run_all.sh, constraints.txt, dub_demo.py
-└── STATUS.tsv                        stage, result, duration (includes two earlier failed attempts)
-```
-
-`*.mp4` / `*.wav` are git-ignored except under `examples/` and `docs/demo/`.
-
-## Repo structure
-
-```
-src/
-  types.py        shared dataclasses (Segment, PipelineConfig)
-  extract.py      [1] audio extraction
-  diarize.py      [2] speaker diarization
-  transcribe.py   [3] transcription
-  translate.py    [4] translation (NLLB / GPT)
-  clone_tts.py    [5] voice cloning + TTS
-  align.py        [6] time alignment
-  reassemble.py   [7] reassembly + [8] remux
-  pipeline.py     orchestrator + CLI
-app.py            Gradio interface
-tests/            unit tests (fast) + integration test (marked)
-docs/             evaluation.md, demo/
-examples/         test clips
 ```
 
 ## Key design decisions
